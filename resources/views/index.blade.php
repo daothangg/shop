@@ -35,8 +35,8 @@
 
     </div>
     @vite('resources/js/app.js')
-    <script src="{{ asset('frontend/js/vendor/jquery-3.5.0.min.js')}}"></script>
-        <script src="{{ asset('frontend/js/popper.min.js')}}"></script>
+   <script src="{{ asset('frontend/js/vendor/jquery-3.5.0.min.js')}}"></script>
+        {{--  <script src="{{ asset('frontend/js/popper.min.js')}}"></script>
         <script src="{{ asset('frontend/js/bootstrap.min.js')}}"></script>
         <script src="{{ asset('frontend/js/isotope.pkgd.min.js')}}"></script>
         <script src="{{ asset('frontend/js/imagesloaded.pkgd.min.js')}}"></script>
@@ -51,6 +51,6 @@
         <script src="{{ asset('frontend/js/wow.min.js')}}"></script>
         <script src="{{ asset('frontend/js/nav-tool.js')}}"></script>
         <script src="{{ asset('frontend/js/plugins.js')}}"></script>
-        <script src="{{ asset('frontend/js/main.js')}}"></script>
+        <script src="{{ asset('frontend/js/main.js')}}"></script> --}}
 </body>
 </html>

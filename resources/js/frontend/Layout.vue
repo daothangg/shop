@@ -364,10 +364,11 @@
         </header>
         <!-- header-area-end -->
 
-        <!-- main-area -->
+        <main>
       <slot name="content">
-        
+
       </slot>
+    </main>
         <!-- main-area-end -->
 
 
@@ -428,10 +429,29 @@
                 </div>
             </div>
         </footer>
-        
+        <div id="scripts"></div>
 </template>
 <script>
 export default{
-    name:'Layout'
+    name:'Layout',
+    mounted(){
+        var src=['/frontend/js/popper.min.js','/frontend/js/bootstrap.min.js',
+            '/frontend/js/isotope.pkgd.min.js','/frontend/js/jquery.magnific-popup.min.js',
+            '/frontend/js/jquery.mCustomScrollbar.concat.min.js','/frontend/js/bootstrap-datepicker.min.js',
+            '/frontend/js/jquery.nice-select.min.js','/frontend/js/jquery.countdown.min.js',
+            '/frontend/js/jarallax.min.js','/frontend/js/slick.min.js',
+            '/frontend/js/wow.min.js','/frontend/js/nav-tool.js',
+            '/frontend/js/plugins.js','/frontend/js/main.js',
+            '/frontend/js/imagesloaded.pkgd.min.js','/frontend/js/swiper-bundle.min.js',
+
+        ];
+        for(var i=0;i<src.length;i++){
+            const script =document.createElement('script');
+            script.src=src[i];
+            script.async=false;
+            document.getElementById('scripts').appendChild(script);
+            
+        }
+    }
 }
 </script>
