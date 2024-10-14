@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\auth\authController;
+use App\Http\Controllers\frontend\CategoryController;
+use App\Http\Controllers\frontend\HomepageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +34,6 @@ Route::group(['middleware'=>['auth:sanctum']],function () {
    });
 
 });
+//frontend data
+Route::get('/getHomeData',[HomepageController::class,'getHomeData']);
+Route::get('/getHeaderCategoriesData',[HomepageController::class,'getcategoriesData']);

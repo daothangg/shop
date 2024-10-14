@@ -11,6 +11,10 @@
     {
       "name": "User",
       "description": "All User Operations"
+    },
+    {
+      "name": "Home Page Data",
+      "description": "All Home Page Data"
     }
   
   ],
@@ -206,12 +210,61 @@
           }
         }
       }
+    },
+    "/getHomeData": {
+      "get": {
+        "tags": [
+          "Home Page Data"
+        ],
+        "summary": "Home Page Data",
+        "operationId": "getHomeData",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+         
+         
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Data"
+          }
+        }
+      }
+    },
+    "/getHeaderCategoriesData": {
+      "get": {
+        "tags": [
+          "Categories Data"
+        ],
+        "summary": "Categories Data",
+        "operationId": "getcategoryData",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+         
+         
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Data"
+          }
+        }
+      }
     }
-
-    
-   
-    
-   
   },
   "securityDefinitions": {
     "APIKeyHeader": {

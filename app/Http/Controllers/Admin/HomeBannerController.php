@@ -77,8 +77,8 @@ class HomeBannerController extends Controller
             ]
         
         );
-        prx($request->all());
-        return $this->success(['reload'=>true],'successfully updated ');
+        // prx($request->all());
+        return redirect('admin/home_Banner')->with('success', 'Homebanner successfully updated');
     }
 }
 

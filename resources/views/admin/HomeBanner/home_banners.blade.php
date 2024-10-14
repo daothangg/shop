@@ -148,7 +148,7 @@
             if(image ==''){
                 var key_image="{{URL::asset('images/448383722_332513999893525_3792276178432463082_n.jpg')}}"
             }else{
-                var key_image="{{URL::asset('images')}}/"+image+"";
+                var key_image=""+image+"";
                 // $('#photo').removeAttr(require);
             }
             var html='<img src="'+key_image+'"  id="imgPreview" height="200px" width="200px" >';

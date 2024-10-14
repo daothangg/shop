@@ -33,25 +33,27 @@ class ProductController extends Controller
         $data = product::get();
         // $brand = brand::get();
         // $category = Category::get();
-        
-       
+
+
         return View('admin/Product/product', get_defined_vars());
 
     }
-    public function view_product($id=0 )
+    public function view_product($id = 0)
     {
         $color = color::get();
-            $size = Size::get();
-            $brand = brand::get();
-            $category = Category::get();
-            $attribute = new attribute();
-            // $data = product::get();
-            
+        $size = Size::get();
+        $brand = brand::get();
+        $category = Category::get();
+        $attribute = new attribute();
+        // $data = product::get();
+
         if ($id == 0) {
             $data = new product();
-            $product_attr = new product_attr();
+            $data['productAttributes'] = $this->attrDummyData();
+            // prx($data);
+            // $product_attr = new product_attr();
             $product_attr_images = new product_image();
-            
+
         } else {
             $data['id'] = $id;
             $validation = Validator::make($data, [
@@ -60,16 +62,28 @@ class ProductController extends Controller
             if ($validation->fails()) {
                 return Redirect::black();
             } else {
-                $data = product::where('id', $id)->with('attribute','productAttributes')->first();
+                $data = product::where('id', $id)->with('attribute', 'productAttributes')->first();
                 // prx($data);
-                
+
             }
-           
-            
+
+
         }
 
         return view('admin/Product/manage_product', get_defined_vars());
         // prx(get_defined_vars());
+    }
+    public function attrDummyData()
+    {
+        $data[0]['id'] = 0;
+        $data[0]['color_id'] = 0;
+        $data[0]['size_id'] = 0;
+        $data[0]['sku'] = 0;
+        $data[0]['mrp'] = 0;
+        $data[0]['price'] = 0;
+        $data[0]['data'] = 0;
+        $data[0]['qty'] = 0;
+        return $data;
     }
     public function store(Request $request)
     {
@@ -91,7 +105,7 @@ class ProductController extends Controller
 
             ]);
 
-
+            $cleanImageName = $this->clean($request->name);
             if ($validation->fails()) {
                 return $this->error($validation->errors()->first(), 400, []);
             } else {
@@ -107,7 +121,7 @@ class ProductController extends Controller
                         }
                     }
 
-                    $image_name = "image/products/" . $request->name . time() . '.' . $request->image->extension();
+                    $image_name = "image/products/" . $cleanImageName . time() . '.' . $request->image->extension();
                     $request->image->move(public_path('image/products'), $image_name);
                 } elseif ($request->id > 0) {
                     $image_name = product::where('id', $request->id)->pluck('image')->first();
@@ -128,20 +142,21 @@ class ProductController extends Controller
                 );
                 $productId = $productId->id;
                 product_attribute::where('product_id', $productId)->delete();
-                
-                foreach ($request->attribute_id as $key => $val) {  
-                    product_attribute::updateOrCreate(
-                        [
-                            'product_id' => $productId,
-                            'attribute_value_id' => $val,
-                            'category_id' => $request->category_id
-                        ],
-                        [
-                            'product_id' => $productId,
-                            'category_id' => $request->category_id,
-                            'attribute_value_id' => $val
-                        ]
-                    );
+                if ($request->attribute_id != '') {
+                    foreach ($request->attribute_id as $key => $val) {
+                        product_attribute::updateOrCreate(
+                            [
+                                'product_id' => $productId,
+                                'attribute_value_id' => $val,
+                                'category_id' => $request->category_id
+                            ],
+                            [
+                                'product_id' => $productId,
+                                'category_id' => $request->category_id,
+                                'attribute_value_id' => $val
+                            ]
+                        );
+                    }
                 }
                 // prx($request->all());
                 $productAttrNewId = [];
@@ -164,27 +179,26 @@ class ProductController extends Controller
                     // array_push($productAttrNewId, $productAttrId);
                     $attrImage = [];
                     // prx($request->all());
-                   
-                        $imageVal = 'attr_image_' . $request->imageValue[$key];
-                       if($request->$imageVal){
+
+                    $imageVal = 'attr_image_' . $request->imageValue[$key];
+                    if ($request->$imageVal) {
                         foreach ($request->$imageVal as $key => $val) {
-                            // echo"<pre>";
-                            //  print_r($val);
-                            $image_name = "image/productsAttr/" . $this->getRandomValue() . $request->name . time() . '.' . $val->extension();
+                            prx($request->$imageVal);
+                            $image_name = "image/productsAttr/" . $this->getRandomValue() . $cleanImageName . time() . '.' . $val->extension();
                             $val->move(public_path('image/productsAttr/'), $image_name);
                             product_image::updateOrCreate([
                                 'product_id' => $productId,
                                 'product_attr_id' => $productAttrId,
                                 'image' => $image_name
                             ]);
-    
+
                         }
-                    
+
                     }
-                
+
 
                 }
-               
+
 
                 // prx($request->all());
                 DB::commit();
@@ -200,7 +214,11 @@ class ProductController extends Controller
         }
     }
 
-
+    public function clean($string)
+    {
+        $string = str_replace(' ', '-', $string);
+        return preg_replace('/[^A-Za-z0-9\-]/', '', $string);
+    }
     public function getAttributes(Request $request)
     {
         $category_id = $request->category_id;
@@ -212,9 +230,10 @@ class ProductController extends Controller
     {
         return bin2hex(random_bytes(5)); // tạo một chuỗi ngẫu nhiên 10 ký tự
     }
-    public function removeAttrId(Request $request){
-        $type=$request->type;
-        DB::table($request->type)->where('id',$request->id)->delete();
-        return $this->success(['status'=>'success'],'Successfully Updated');
+    public function removeAttrId(Request $request)
+    {
+        $type = $request->type;
+        DB::table($request->type)->where('id', $request->id)->delete();
+        return $this->success(['status' => 'success'], 'Successfully Updated');
     }
 }

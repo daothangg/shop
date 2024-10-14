@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\auth\authController;
+use App\Http\Controllers\frontend\HomepageController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +21,9 @@ Route::get('/', function () {
     return view('index');
     // return redirect('admin/dashboard');
 });
-
+Route::get('/admin', function () {
+    return redirect('admin/dashboard');
+});
 // Route::get('/createAdmin',[AuthController::class,'createCustomer']);
 Route::get('/login', function () {
     return view('auth/signin');

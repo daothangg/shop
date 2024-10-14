@@ -46,113 +46,30 @@
                                     </div>
                                     <div class="navbar-wrap main-menu d-none d-lg-flex">
                                         <ul class="navigation">
-                                            <li class="active menu-item-has-children has--mega--menu"><a href="#">Home</a>
-                                                <ul class="mega--menu--wrap scroll">
-                                                    <li>
-                                                        <a href="index.html">
-                                                            <span class="img"><img src="../../assets/img/home-demo/home_01.jpg" alt=""></span>
-                                                            <span class="text">Home style One</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index-2.html">
-                                                            <span class="img"><img src="../../assets/img/home-demo/home_02.jpg" alt=""></span>
-                                                            <span class="text">Home style Two</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="active">
-                                                        <a href="index-3.html">
-                                                            <span class="img"><img src="../../assets/img/home-demo/home_03.jpg" alt=""></span>
-                                                            <span class="text">Home style Three</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index-4.html">
-                                                            <span class="img"><img src="../../assets/img/home-demo/home_04.jpg" alt=""></span>
-                                                            <span class="text">Home style four</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index-5.html">
-                                                            <span class="img"><img src="../../assets/img/home-demo/home_05.jpg" alt=""></span>
-                                                            <span class="text">Home style five</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index-6.html">
-                                                            <span class="img"><img src="../../assets/img/home-demo/home_06.jpg" alt=""></span>
-                                                            <span class="text">Home style six</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index-7.html">
-                                                            <span class="img"><img src="../../assets/img/home-demo/home_07.jpg" alt=""></span>
-                                                            <span class="text">Home style seven</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index-8.html">
-                                                            <span class="img"><img src="../../assets/img/home-demo/home_08.jpg" alt=""></span>
-                                                            <span class="text">Home style eight</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index-9.html">
-                                                            <span class="img"><img src="../../assets/img/home-demo/home_09.jpg" alt=""></span>
-                                                            <span class="text">Home style nine</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="has--mega--menu"><a href="#">Shop</a>
+                                            <li v-for="item in HeaderCategories":key="item.id" class="has--mega--menu">
+                                                <a href="#">{{item.name}}</a>
                                                 <ul class="mega-menu">
                                                     <li class="mega-menu-wrap">
                                                         <ul class="mega-menu-col">
-                                                            <li class="mega-title"><a href="shop.html">SHOP PAGES</a></li>
-                                                            <li><a href="shop-sidebar.html">Right Sidebar</a></li>
-                                                            <li><a href="shop-sidebar.html">Left Sidebar</a></li>
-                                                            <li><a href="shop.html">Hidden sidebar</a></li>
-                                                            <li><a href="shop.html">Filters area</a></li>
-                                                            <li><a href="shop-details.html">Shop Details</a></li>
-                                                            <li><a href="cart.html">Cart Page</a></li>
-                                                            <li><a href="checkout.html">Checkout Page</a></li>
+                                                            <li class="mega-title"><a href="shop.html">{{item.name}}</a></li>
+                                                            <li v-for="subitem in item.subcategories":key="subitem.id">
+                                                                <a href="shop-sidebar.html">{{subitem.name}}</a></li>
+                                                           
                                                         </ul>
-                                                        <ul class="mega-menu-col">
-                                                            <li class="mega-title"><a href="#">FEATURES</a></li>
-                                                            <li><a href="shop-sidebar.html">Variable Product</a></li>
-                                                            <li><a href="shop-sidebar.html">External Product</a></li>
-                                                            <li><a href="shop-sidebar.html">Other Shop Pages</a></li>
-                                                            <li><a href="shop-sidebar.html">Categories</a></li>
-                                                            <li><a href="shop-sidebar.html">Collection</a></li>
-                                                            <li><a href="shop-sidebar.html">LookBook</a></li>
-                                                            <li><a href="cart.html">Shopping Cart</a></li>
-                                                        </ul>
+                                                       
                                                         <ul class="mega-menu-col sub-cat-post">
                                                             <li>
                                                                 <a href="shop-sidebar.html">
-                                                                    <img src="../../assets/img/product/sub_menu_img01.jpg" alt="">
-                                                                    <span class="btn">Man Shop</span>
+                                                                    <img :src="item.image" alt="">
+                                                                    <span class="btn">{{item.name}}</span>
                                                                 </a>
                                                             </li>
                                                         </ul>
-                                                        <ul class="mega-menu-col sub-cat-post">
-                                                            <li>
-                                                                <a href="shop-sidebar.html">
-                                                                    <img src="../../assets/img/product/sub_menu_img02.jpg" alt="">
-                                                                    <span class="btn">Women’s Shop</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
+                                                        
                                                     </li>
                                                 </ul>
                                             </li>
                                             <li><a href="about-us.html">About Us</a></li>
-                                            <li class="menu-item-has-children"><a href="#">blog</a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">Our Blog</a></li>
-                                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                                </ul>
-                                            </li>
                                             <li><a href="contact.html">Contact Us</a></li>
                                         </ul>
                                     </div>
@@ -218,20 +135,9 @@
                                     </div>
                                     <div class="menu-outer">
                                         <ul class="navigation">
-                                            <li class="active menu-item-has-children"><a href="#">Home</a>
-                                                <ul class="submenu">
-                                                    <li><a href="index.html">Home One</a></li>
-                                                    <li><a href="index-2.html">Home Two</a></li>
-                                                    <li class="active"><a href="index-3.html">Home Three</a></li>
-                                                    <li><a href="index-4.html">Home Four</a></li>
-                                                    <li><a href="index-5.html">Home Five</a></li>
-                                                    <li><a href="index-6.html">Home Six</a></li>
-                                                    <li><a href="index-7.html">Home Seven</a></li>
-                                                    <li><a href="index-8.html">Home Eight</a></li>
-                                                    <li><a href="index-9.html">Home Nine</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu-item-has-children"><a href="#">Shop</a>
+                                            
+                                            <li class="menu-item-has-children">
+                                                <a href="#">Shop</a>
                                                 <ul class="submenu">
                                                     <li><a href="shop.html">Shop Page</a></li>
                                                     <li><a href="shop-sidebar.html">Shop Sidebar</a></li>
@@ -432,8 +338,13 @@
         <div id="scripts"></div>
 </template>
 <script>
+import axios from 'axios';
+import getUrlList from '../provider.js';
 export default{
     name:'Layout',
+    data(){return{
+        HeaderCategories:[],
+    }},
     mounted(){
         var src=['/frontend/js/popper.min.js','/frontend/js/bootstrap.min.js',
             '/frontend/js/isotope.pkgd.min.js','/frontend/js/jquery.magnific-popup.min.js',
@@ -450,7 +361,25 @@ export default{
             script.src=src[i];
             script.async=false;
             document.getElementById('scripts').appendChild(script);
-            
+           
+        }
+        this.getCategories();
+    },
+    methods:{
+        async getCategories(){
+            try {
+                let data= await axios.get(getUrlList().getHeaderCategoriesData)
+                if(data.status==200&& data.data.data.data.categories.length>0){
+                    this.HeaderCategories =data.data.data.data.categories;
+                    console.log(this.HeaderCategories)
+                }
+                else{
+
+                }
+                // console.log(data)
+            } catch (error) {
+                
+            }
         }
     }
 }
