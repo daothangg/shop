@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\brand;
 use App\Models\category;
 use App\Models\HomeBanner;
+use App\Models\product;
 use App\Traits\ApiResponce;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,9 @@ class HomepageController extends Controller
     public function getHomeData(){
         $data=[];
         $data['banner']=HomeBanner::get();
-        $data['categories']=category::with('products')->get();
+        $data['categories']=category::with('products:id,category_id,name,slug,image,item_code')->get();
         $data['brand']=brand::get();
+        $data['products']=product::with('productAttributes')->select('id','category_id','image','name','slug','item_code')->get();
         return $this->success(['data'=>$data],'successfully data ');
     }
     public function getcategoriesData(){

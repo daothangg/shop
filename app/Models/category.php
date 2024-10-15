@@ -19,7 +19,7 @@ class category extends Model
         
     ];
     public function products(){
-        return $this->hasMany(product::class,'category_id','id');
+        return $this->hasMany(product::class,'category_id','id')->with('productAttributes');
     }
     public function subcategories(){
         return $this->hasMany(category::class,'parent_category_id','id');

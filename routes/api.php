@@ -37,3 +37,4 @@ Route::group(['middleware'=>['auth:sanctum']],function () {
 //frontend data
 Route::get('/getHomeData',[HomepageController::class,'getHomeData']);
 Route::get('/getHeaderCategoriesData',[HomepageController::class,'getcategoriesData']);
+Route::get('/getCategoryData/{slug?}',[HomepageController::class,'getCategoryData']);

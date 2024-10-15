@@ -15,6 +15,14 @@
     {
       "name": "Home Page Data",
       "description": "All Home Page Data"
+    },
+    {
+      "name": "Category Page Data",
+      "description": "All Category Page Data"
+    },
+    {
+      "name": "Product Page Data",
+      "description": "All Product Page Data"
     }
   
   ],
@@ -210,7 +218,8 @@
           }
         }
       }
-    },
+    }
+    ,
     "/getHomeData": {
       "get": {
         "tags": [
@@ -230,6 +239,32 @@
          
          
          
+        ],
+        "responses": {
+          "200": {
+            "description": "Data"
+          }
+        }
+      }
+      
+    },
+    
+    "/getCategoryData": {
+      "get": {
+        "tags": [
+          "Category Page Data"
+        ],
+        "summary": "Category Page Data",
+        "operationId": "getCategoryData",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
         ],
         "responses": {
           "200": {

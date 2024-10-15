@@ -371,7 +371,7 @@ export default{
                 let data= await axios.get(getUrlList().getHeaderCategoriesData)
                 if(data.status==200&& data.data.data.data.categories.length>0){
                     this.HeaderCategories =data.data.data.data.categories;
-                    console.log(this.HeaderCategories)
+                    // console.log(this.HeaderCategories)
                 }
                 else{
 
